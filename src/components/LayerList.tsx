@@ -13,7 +13,7 @@ const LayerList: React.FC<LayerListProps> = ({ layers, toggleVisibility, updateO
   return (
     <div className="w-64 bg-white shadow-lg p-4 overflow-y-auto">
       <h2 className="text-xl font-bold mb-4 flex items-center">
-        <Layers className="mr-2" /> Layers
+        <Layers className="mr-2" /> Capas
       </h2>
       <ul>
         {layers.map(layer => (

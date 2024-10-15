@@ -81,7 +81,7 @@ interface VisibleLayersListProps {
 const VisibleLayersList: React.FC<VisibleLayersListProps> = ({ layers, moveLayer }) => {
   return (
     <div className="absolute top-2 right-2 w-64 bg-white shadow-lg rounded p-2 z-[1000]">
-      <h3 className="font-bold mb-2">Visible Layers</h3>
+      <h3 className="font-bold mb-2">Capas Visibles</h3>
       <ul>
         {layers.map((layer, index) => (
           <LayerItem key={layer.id} layer={layer} index={index} moveLayer={moveLayer} />

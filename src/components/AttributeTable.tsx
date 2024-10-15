@@ -88,9 +88,9 @@ const AttributeTable: React.FC<AttributeTableProps> = ({ layerId, layerName, onC
   const columns = Object.keys(attributes[0].properties);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-100">
       <div className="bg-white rounded-lg p-4 w-3/4 h-3/4 overflow-auto">
-        <h2 className="text-xl font-bold mb-4">Attribute Table</h2>
+        <h2 className="text-xl font-bold mb-4">Tabla de Atributos</h2>
         <table className="w-full border-collapse">
           <thead>
             <tr>

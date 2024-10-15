@@ -25,10 +25,11 @@ function App() {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(response.data, 'text/xml');
         const layerElements = xmlDoc.getElementsByTagName('Layer');
-        
+
         const parsedLayers: Layer[] = Array.from(layerElements).map((layerElement, index) => {
           const name = layerElement.getElementsByTagName('Name')[0]?.textContent || '';
           const title = layerElement.getElementsByTagName('Title')[0]?.textContent || '';
+          const abstract = layerElement.getElementsByTagName('Abstract')[0]?.textContent || '';
           const bbox = layerElement.getElementsByTagName('BoundingBox')[0];
           const extent = bbox ? [
             parseFloat(bbox.getAttribute('minx') || '0'),
@@ -36,7 +37,7 @@ function App() {
             parseFloat(bbox.getAttribute('maxx') || '0'),
             parseFloat(bbox.getAttribute('maxy') || '0')
           ] : null;
-          return { id: index, name, title, visible: false, opacity: 1, zIndex: index, extent };
+          return { id: index, name, title, abstract, visible: false, opacity: 1, zIndex: index, extent };
         });
 
         setLayers(parsedLayers);
@@ -114,14 +115,14 @@ function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="flex h-screen">
-        <LayerList 
-          layers={layers} 
-          toggleVisibility={toggleLayerVisibility} 
+        <LayerList
+          layers={layers}
+          toggleVisibility={toggleLayerVisibility}
           updateOpacity={updateLayerOpacity}
           onContextMenu={handleContextMenu}
         />
         <div className="flex-grow relative">
-          <MapContainer center={[-38.9516, -68.0591]} zoom={7} style={{ height: '100%', width: '100%' }}>
+          <MapContainer center={[-38.9516, -68.0591]} zoom={7} style={{ height: '100%', width: '100%', zIndex: '0' }}>
             <MapController />
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
